@@ -1,5 +1,5 @@
 ### Death or Treat Ultra-wide Fix + Tweaks
-![Game Logo](https://raw.githubusercontent.com/p1xel8ted/DeathOrTreat/main/social-small.jpg)<br>
+![Game Logo](social-small.jpg)<br>
 
 [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/F2F2DI3WA)<br>
 [![Github All Releases](https://img.shields.io/github/downloads/p1xel8ted/DeathOrTreat/total.svg)](https://github.com/p1xel8ted/DeathOrTreat/releases)
