@@ -23,11 +23,11 @@
   </ItemDefinitionGroup>
 
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
-    <OutputPath>H:\Games\steamapps\common\Death or Treat Demo\BepInEx\plugins\$(MSBuildProjectName)</OutputPath>
+    <OutputPath>H:\Games\steamapps\common\Death or Threat\BepInEx\plugins</OutputPath>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
-    <OutputPath>H:\Games\steamapps\common\Death or Treat Demo\BepInEx\plugins\$(MSBuildProjectName)</OutputPath>
+    <OutputPath>H:\Games\steamapps\common\Death or Threat\BepInEx\plugins</OutputPath>
   </PropertyGroup>
 
   <ItemGroup Condition="'$(TargetFramework.TrimEnd(`0123456789`))' == 'net'">
