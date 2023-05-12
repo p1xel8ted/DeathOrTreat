@@ -42,11 +42,6 @@ namespace DeathOrTreatUltrawideFix
         /// </summary>
         internal static HashSet<CanvasScaler> CanvasScalers { get; private set; }
 
-        /// <summary>
-        /// Singleton instance of the plugin.
-        /// </summary>
-        private static Plugin Instance { get; set; }
-
         private static readonly WriteOnce<Camera> MainCamera = new();
         private static readonly WriteOnce<CinemachineVirtualCamera> VcCamera = new();
         private static readonly int Fade = Animator.StringToHash("Fade");
@@ -57,13 +52,12 @@ namespace DeathOrTreatUltrawideFix
         private void Awake()
         {
             DontDestroyOnLoad(gameObject);
-            Instance = this;
             SceneManager.sceneLoaded += SceneLoaded;
             Application.runInBackground = true;
             CanvasScalers = new HashSet<CanvasScaler>();
             UpdateAspectValues();
 
-            CameraZoom = Config.Bind("General", "Camera Zoom", 5, new ConfigDescription("Adjusts the zoom level of the camera.", new AcceptableValueRange<int>(1, 30)));
+            CameraZoom = Config.Bind("General", "Camera Zoom", 5, new ConfigDescription("Adjusts the zoom level of the camera.", new AcceptableValueRange<int>(1, 101)));
             CameraZoom.SettingChanged += (_, _) => { UpdateCameras(); };
 
             CustomScale = Config.Bind("General", "Custom Scale", 1 * ScaleFactor, new ConfigDescription("Custom scale factor for UI elements. It's calculated automatically based on a 16:9 aspect ratio and your display's aspect ratio.", new AcceptableValueRange<float>(0.5f, 2f)));
