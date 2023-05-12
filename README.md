@@ -6,7 +6,7 @@
 
 ## Note
 
-- Tested on Steam, 3440x1440.
+- Tested on Steam, 21:9 and 32:9
 
 ## Features
 
