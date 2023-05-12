@@ -20,18 +20,17 @@ public static class Patches
     [HarmonyPatch(typeof(CanvasScaler), nameof(CanvasScaler.OnEnable))]
     private static void GraphicsMenu_OnEnable(ref CanvasScaler __instance)
     {
-        if (__instance.name.Contains("sinai")) return;
-        if (Display.main.systemWidth / (float) Display.main.systemHeight > 16 / 9f)
+        if (__instance.name.Contains("sinai")) return; //UnityExplorer
+        if (!(Display.main.systemWidth / (float) Display.main.systemHeight > 16 / 9f)) return;
+        
+        var exists = Plugin.CanvasScalers.TryGetValue(__instance, out _);
+        if (!exists)
         {
-            var exists = Plugin.CanvasScalers.TryGetValue(__instance, out _);
-            if (!exists)
-            {
-                Plugin.CanvasScalers.Add(__instance);
-            }
-            
-            __instance.scaleFactor = Plugin.CustomScale.Value > 1 ? 1 * Plugin.CustomScale.Value : Plugin.CustomScale.Value;
-            __instance.uiScaleMode = CanvasScaler.ScaleMode.ConstantPixelSize;
+            Plugin.CanvasScalers.Add(__instance);
         }
+            
+        __instance.scaleFactor = Plugin.CustomScale.Value > 1 ? 1 * Plugin.CustomScale.Value : Plugin.CustomScale.Value;
+        __instance.uiScaleMode = CanvasScaler.ScaleMode.ConstantPixelSize;
     }
 
 
@@ -43,13 +42,12 @@ public static class Patches
     [HarmonyPatch(typeof(GraphicsMenu), nameof(GraphicsMenu.Start))]
     private static void GraphicsMenu_Start(ref GraphicsMenu __instance)
     {
-        if (Display.main.systemWidth / (float) Display.main.systemHeight > 16 / 9f)
+        if (!(Display.main.systemWidth / (float) Display.main.systemHeight > 16 / 9f)) return;
+        
+        var resText = __instance.transform.Find("ScreenPanel/Medium/Text (TMP)").GetComponent<TextMeshProUGUI>();
+        if (resText != null)
         {
-            var resText = __instance.transform.Find("ScreenPanel/Medium/Text (TMP)").GetComponent<TextMeshProUGUI>();
-            if (resText != null)
-            {
-                resText.text = $"{Display.main.systemWidth}x{Display.main.systemHeight}";
-            }
+            resText.text = $"{Display.main.systemWidth}x{Display.main.systemHeight}";
         }
     }
 
@@ -61,10 +59,9 @@ public static class Patches
     [HarmonyPatch(typeof(GraphicsMenu), nameof(GraphicsMenu.SetResolution), typeof(int))]
     private static void GraphicsMenu_SetResolution(ref GraphicsMenu __instance, int resolutionInt)
     {
-        if (resolutionInt == 2)
-        {
-            __instance.SetResolution(Display.main.systemWidth, Display.main.systemHeight);
-            PlayerPrefs.SetInt("Resolution", resolutionInt);
-        }
+        if (resolutionInt != 2) return;
+        
+        __instance.SetResolution(Display.main.systemWidth, Display.main.systemHeight);
+        PlayerPrefs.SetInt("Resolution", resolutionInt);
     }
 }
