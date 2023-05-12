@@ -1,4 +1,6 @@
-﻿using HarmonyLib;
+﻿using System.Linq;
+using HarmonyLib;
+using SaonaStudios.Core;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -21,7 +23,14 @@ public static class Patches
     private static void GraphicsMenu_OnEnable(ref CanvasScaler __instance)
     {
         if (__instance.name.Contains("sinai")) return; //UnityExplorer
+       
         if (!(Display.main.systemWidth / (float) Display.main.systemHeight > 16 / 9f)) return;
+
+        if (__instance.name.Contains("Death Menu"))
+        {
+            GameManager.Instance.EnableControls();
+            return;
+        }
         
         var exists = Plugin.CanvasScalers.TryGetValue(__instance, out _);
         if (!exists)

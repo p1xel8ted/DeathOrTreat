@@ -20,7 +20,7 @@ namespace DeathOrTreatUltrawideFix
     {
         private const string PluginGuid = "p1xel8ted.deathortreat.ultrawide";
         private const string PluginName = "Death or Treat Ultra-Wide Fix";
-        private const string PluginVersion = "0.0.3";
+        private const string PluginVersion = "0.0.3.1";
         private const float BaseAspectRatio = 16f / 9f;
         private const string BepInExText = "\nAssembly = Assembly-CSharp.dll\nType = CurrencyItem\nMethod = .cctor";
 
