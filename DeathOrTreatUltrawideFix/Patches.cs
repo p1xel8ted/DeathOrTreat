@@ -23,22 +23,17 @@ public static class Patches
         if (__instance.name.Contains("sinai")) return;
         if (Display.main.systemWidth / (float) Display.main.systemHeight > 16 / 9f)
         {
-            if (Plugin.CanvasScalers != null)
+            var exists = Plugin.CanvasScalers.TryGetValue(__instance, out _);
+            if (!exists)
             {
-                var exists = Plugin.CanvasScalers.TryGetValue(__instance, out _);
-                if (!exists)
-                {
-                    Plugin.CanvasScalers.Add(__instance);
-                }
+                Plugin.CanvasScalers.Add(__instance);
             }
-
-            if (Plugin.CustomScale != null)
-            {
-                __instance.scaleFactor = Plugin.CustomScale.Value > 1 ? 1 * Plugin.CustomScale.Value : Plugin.CustomScale.Value;
-                __instance.uiScaleMode = CanvasScaler.ScaleMode.ConstantPixelSize;
-            }
+            
+            __instance.scaleFactor = Plugin.CustomScale.Value > 1 ? 1 * Plugin.CustomScale.Value : Plugin.CustomScale.Value;
+            __instance.uiScaleMode = CanvasScaler.ScaleMode.ConstantPixelSize;
         }
     }
+
 
     /// <summary>
     /// This method gets executed after GraphicsMenu's Start method.
