@@ -18,4 +18,5 @@
 ## Installation
 
 - Grab the latest release of Death or Treat Ultra-wide Fix Ultra-wide Fix from [here.](https://github.com/p1xel8ted/DeathOrTreat/releases)
-- Extract the contents of the release zip in to the game directory.<br />(e.g. "**steamapps\common\Death Or Treat**" for Steam).
+- Extract the contents of the release zip in to the game directory.<br />(e.g. "**steamapps\common\Death Or Threat**" for Steam).
+- Threat is not a typo...
